@@ -17,7 +17,9 @@ router.get("/search", async (req, res) => {
         res.status(400).send("The country query must be valid example ?country=geos/af.html");
     } else {
         const dataCrawler = await DataCrawler(`https://www.cia.gov/library/publications/resources/the-world-factbook/${req.query.country}`);
-        res.status(200).send(await dataCrawler.gatherHTML());
+        const objects = await dataCrawler.gatherHTML();
+        res.status(200).send(objects.filter((e) => e.attributes.get("id"))
+            .filter((e) => e.attributes.get("id").includes("-category-section")));
     }
 });
 
