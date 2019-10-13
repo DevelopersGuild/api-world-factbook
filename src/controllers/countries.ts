@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/search", async (req, res) => {
-    if (req.query.country.length < 1 || !req.query.country.includes("geos/") || !req.query.country) {
+    if (!req.query.country || req.query.country.length < 1 || !req.query.country.includes("geos/")) {
         res.status(400).send("The country query must be valid example ?country=geos/af.html");
     } else {
         const dataCrawler = await DataCrawler(`https://www.cia.gov/library/publications/resources/the-world-factbook/${req.query.country}`);
