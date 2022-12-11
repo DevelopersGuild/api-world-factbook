@@ -16,6 +16,6 @@
   },
   "dependencies": {
     "@calba1114/autoscrape": "0.0.7",
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   }
 }
